@@ -58,3 +58,18 @@ app.get('/evens/:n', async (req, res) => {
     res.send("Produc not found")
   }
 })
+
+
+app.get('/namelength/:name', async (req, res) => {
+  try {
+    const { name } = req.params;
+    const nameLength = name.length;
+
+    res.json(nameLength);
+  } catch(e) {
+    console.log(e);
+    res.send("not found")
+  }
+})
+
+
