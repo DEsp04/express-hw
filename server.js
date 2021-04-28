@@ -73,3 +73,19 @@ app.get('/namelength/:name', async (req, res) => {
 })
 
 
+app.get('/fruits', async (req, res) => {
+  const fruits = await Fruit.find();
+  res.json(fruits);
+});
+
+app.get("/fruits/:name", async (req, res) => {
+  try {
+    const { name } = req.params;
+    const fruit = await Fruit.find({ name: name });
+    if (!fruit) throw Error("fruit not found");
+    res.json(fruit)
+  } catch (e) {
+    console.log(e);
+    res.send("Fruit not found")
+  }
+})
